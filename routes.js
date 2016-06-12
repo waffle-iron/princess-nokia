@@ -5,8 +5,7 @@ import Main from './Main';
 import React from 'react';
 import ReactDOM from 'react-dom';
 // utils
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory} from 'react-router'
 
 // main app container
 class AppContainer extends React.Component {
@@ -23,7 +22,7 @@ class AppContainer extends React.Component {
 const routes = (<Router history={browserHistory}>
     <Route path='/' component={AppContainer}>
         <IndexRoute component={Splash}/>
-        <Route path="main" component={Main}/>
+        <Route path="/main" component={Main}/>
     </Route>
 </Router>);
 
