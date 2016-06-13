@@ -2,7 +2,5 @@ language: node_js
 node_js:
   - "5.9.1"
 script:
-  # run build script specified in package.json
-  - npm install
   # call script for deploying of produced artifacts
   - bash ./.travis-deploy.sh

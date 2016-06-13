@@ -3,6 +3,9 @@
 set -e
 ## update gitignore so the dist directory is included
 sed -i.orig '/dist/d' ./.gitignore
+## run build script specified in package.json
+npm install
+npm run build
 # go to the directory which contains build artifacts and create a *new* Git repo
 # directory may be different based on your particular build process
 cd dist
