@@ -1,25 +1,37 @@
-#!/usr/bin/env bash
-# exit with nonzero exit code if anything fails
-set -e
-## update gitignore so the dist directory is included
-sed -i.orig '/dist/d' ./.gitignore
-## run build script specified in package.json
-npm install
+#!/bin/bash
+
+set -o errexit -o nounset
+
+echo $GH_TOKEN
+echo $GH_REF
+
+## make sure we deploy new assets, clean cache
+npm run clean
+## build /dist static asset artifacts
 npm run build
-# go to the directory which contains build artifacts and create a *new* Git repo
-# directory may be different based on your particular build process
+
+if [ "$TRAVIS_BRANCH" != "master" ]
+then
+  echo "This commit was made against the $TRAVIS_BRANCH and not the master! No deploy!"
+  exit 0
+fi
+
+rev=$(git rev-parse --short HEAD)
+
 cd dist
+
 git init
-# inside this git repo we'll pretend to be a new user
-git config user.name "Travis CI"
+git config user.name "dviramontes"
 git config user.email "dviramontes@gmail.com"
-# The first and only commit to this new Git repo contains all the
-# files present with the commit message "Deploy to GitHub Pages".
-git add .
-git commit -m "Deploy to GitHub Pages"
-# Force push from the current repo's master branch to the remote
-# repo's gh-pages branch. (All previous history on the gh-pages branch
-# will be lost, since we are overwriting it.) We redirect any output to
-# /dev/null to hide any sensitive credential data that might otherwise be exposed.
-# tokens GH_TOKEN and GH_REF will be provided as Travis CI environment variables
-git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+
+git remote add upstream "https://${GH_TOKEN}@${GH_REF}"
+git fetch upstream
+git reset upstream/gh-pages
+
+echo "mmmanyfold/princess-nokia" > CNAME
+
+touch .
+
+git add -A .
+git commit -m "rebuild pages at ${rev}"
+git push -q upstream HEAD:gh-pages

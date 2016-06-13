@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf dist",
     "start": "webpack-dev-server --content-base .",
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js"
   },
@@ -25,6 +26,7 @@
     "file-loader": "^0.8.5",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1"
   }
