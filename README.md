@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mmmanyfold/princess-nokia.svg?branch=master)](https://travis-ci.org/mmmanyfold/princess-nokia)
 
 ### [Waffle Board](https://waffle.io/mmmanyfold/princess-nokia)
 ### deving
