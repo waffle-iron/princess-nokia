@@ -19,8 +19,13 @@ class AppContainer extends React.Component {
 }
 
 // router
+// * with duplicate routes for github pages
 const routes = (<Router history={browserHistory}>
     <Route path='/' component={AppContainer}>
+        <IndexRoute component={Splash}/>
+        <Route path="/main" component={Main}/>
+    </Route>
+    <Route path='/princess-nokia' component={AppContainer}>
         <IndexRoute component={Splash}/>
         <Route path="/main" component={Main}/>
     </Route>

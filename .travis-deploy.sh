@@ -2,9 +2,6 @@
 
 set -o errexit -o nounset
 
-echo $GH_TOKEN
-echo $GH_REF
-
 ## make sure we deploy new assets, clean cache
 npm run clean
 ## build /dist static asset artifacts
@@ -28,7 +25,7 @@ git remote add upstream "https://${GH_TOKEN}@github.com/mmmanyfold/princess-noki
 git fetch upstream
 git reset upstream/gh-pages
 
-echo "mmmanyfold/princess-nokia" > CNAME
+# echo "mmmanyfold/princess-nokia" > CNAME
 
 touch .
 
