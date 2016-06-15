@@ -24,7 +24,7 @@ git init
 git config user.name "dviramontes"
 git config user.email "dviramontes@gmail.com"
 
-git remote add upstream "https://${GH_TOKEN}@${GH_REF}"
+git remote add upstream "https://${GH_TOKEN}@github.com/mmmanyfold/princess-nokia.git"
 git fetch upstream
 git reset upstream/gh-pages
 
